@@ -79,8 +79,9 @@ int main()
             previous=current;
         }
     }
-    for(int i=0;i<ans.size()-1;i++)
-        cout<<ans[i]<<" ";
+    cout<<ans[0];
+    for(int i=1;i<ans.size()-1;i++)
+        cout<<" "<<ans[i];
     cout<<endl;
     return 0;
 }
