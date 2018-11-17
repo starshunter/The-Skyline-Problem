@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
+#include <fstream>
 using namespace std;
 
 bool cmp(pair<int,int>a,pair<int,int>b)
@@ -13,18 +14,29 @@ bool cmp(pair<int,int>a,pair<int,int>b)
 
 int main()
 {
-    int n;
-    cin>>n;
-
-    pair<int,int> left_node[n],right_node[n];
+    int n=0;
+    pair<int,int> *left_node,*right_node;
     vector<int> ans;
-
     int left, height, right;
-    for(int i=0;i<n;i++)
+
+    ifstream file("input.txt");
+    if(file.is_open())
     {
-        cin>>left>>height>>right;
-        left_node[i].first=left, left_node[i].second=height;
-        right_node[i].first=right, right_node[i].second=height;
+        file>>n;
+        left_node=new pair<int,int>[n];
+        right_node=new pair<int,int>[n];
+        for(int i=0;i<n;i++)
+        {
+            file>>left>>height>>right;
+            left_node[i].first=left, left_node[i].second=height;
+            right_node[i].first=right, right_node[i].second=height;
+        }
+        file.close();
+    }
+    else
+    {
+        cout<<"Can't read \"input.txt\""<<endl;
+        return 0;
     }
 
     sort(left_node,left_node+n,cmp);
